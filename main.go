@@ -28,7 +28,7 @@ func GetBooks(w http.ResponseWriter, r *http.Request) {
 // function to add new book to the list of books
 func AddBooks(w http.ResponseWriter, r *http.Request) {
 	var newBook Book
-	newBook.ID = len(books)
+	newBook.ID = len(books) + 1
 	// opening a new reader to get a new book
 	reader := bufio.NewReader((os.Stdin))
 	//user inputs into a new book
@@ -44,7 +44,7 @@ func AddBooks(w http.ResponseWriter, r *http.Request) {
 
 	// response
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode()
+	json.NewEncoder(w).Encode(books)
 }
 
 func main() {
